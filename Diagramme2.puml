@@ -1,0 +1,77 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <vector>
+using namespace std;
+
+// ---------- Classe mère abstraite ----------
+class Employe {
+private:
+    int matricule;
+    string nom;
+    string prenom;
+    double salaireBase;
+
+public:
+    Employe(int matricule, const string& nom, const string& prenom, double salaireBase)
+        : matricule(matricule), nom(nom), prenom(prenom), salaireBase(salaireBase) {}
+
+    virtual ~Employe() {}   // destructeur virtuel (indispensable pour le polymorphisme)
+
+    virtual double calculerSalaire() const = 0;   // méthode virtuelle pure
+    virtual void afficher() const;
+
+    int getMatricule() const { return matricule; }
+    string getNom() const { return nom; }
+    string getPrenom() const { return prenom; }
+    double getSalaireBase() const { return salaireBase; }
+};
+
+// ---------- Classes dérivées ----------
+class Enseignant : public Employe {
+private:
+    double indemniteEnseignement;
+    double indemniteRecherche;
+
+public:
+    Enseignant(int matricule, const string& nom, const string& prenom, double salaireBase,
+               double indemniteEnseignement, double indemniteRecherche)
+        : Employe(matricule, nom, prenom, salaireBase),
+          indemniteEnseignement(indemniteEnseignement),
+          indemniteRecherche(indemniteRecherche) {}
+
+    double calculerSalaire() const override;
+    void afficher() const override;
+};
+
+class AgentAdministratif : public Employe {
+private:
+    double primeAdministrative;
+    double primeResponsabilite;
+
+public:
+    AgentAdministratif(int matricule, const string& nom, const string& prenom, double salaireBase,
+                       double primeAdministrative, double primeResponsabilite)
+        : Employe(matricule, nom, prenom, salaireBase),
+          primeAdministrative(primeAdministrative),
+          primeResponsabilite(primeResponsabilite) {}
+
+    double calculerSalaire() const override;
+    void afficher() const override;
+};
+
+class Technicien : public Employe {
+private:
+    double primeTechnique;
+    double primeRisque;
+
+public:
+    Technicien(int matricule, const string& nom, const string& prenom, double salaireBase,
+               double primeTechnique, double primeRisque)
+        : Employe(matricule, nom, prenom, salaireBase),
+          primeTechnique(primeTechnique),
+          primeRisque(primeRisque) {}
+
+    double calculerSalaire() const override;
+    void afficher() const override;
+};
