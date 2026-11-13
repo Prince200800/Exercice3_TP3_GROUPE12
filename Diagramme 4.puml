@@ -1,0 +1,33 @@
+void Employe::afficher() const {
+    cout << "Matricule      : " << matricule << endl;
+    cout << "Nom            : " << nom << endl;
+    cout << "Prenom         : " << prenom << endl;
+    cout << "Salaire de base: " << fixed << setprecision(2) << salaireBase << endl;
+}
+
+void Enseignant::afficher() const {
+    cout << "--- Enseignant ---" << endl;
+    Employe::afficher();
+    cout << "Indemnite enseignement: " << indemniteEnseignement << endl;
+    cout << "Indemnite recherche   : " << indemniteRecherche << endl;
+    cout << "Salaire total         : " << calculerSalaire() << endl;
+    cout << endl;
+}
+
+void AgentAdministratif::afficher() const {
+    cout << "--- Agent administratif ---" << endl;
+    Employe::afficher();
+    cout << "Prime administrative : " << primeAdministrative << endl;
+    cout << "Prime responsabilite : " << primeResponsabilite << endl;
+    cout << "Salaire total        : " << calculerSalaire() << endl;
+    cout << endl;
+}
+
+void Technicien::afficher() const {
+    cout << "--- Technicien ---" << endl;
+    Employe::afficher();
+    cout << "Prime technique : " << primeTechnique << endl;
+    cout << "Prime de risque : " << primeRisque << endl;
+    cout << "Salaire total   : " << calculerSalaire() << endl;
+    cout << endl;
+}
