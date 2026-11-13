@@ -1,0 +1,56 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+abstract class Employe {
+  - matricule : int
+  - nom : string
+  - prenom : string
+  - salaireBase : double
+  + Employe(matricule : int, nom : string, prenom : string, salaireBase : double)
+  + {abstract} calculerSalaire() : double
+  + afficher() : void
+  + getMatricule() : int
+  + getNom() : string
+  + getPrenom() : string
+  + getSalaireBase() : double
+  + ~Employe()
+}
+
+class Enseignant {
+  - indemniteEnseignement : double
+  - indemniteRecherche : double
+  + Enseignant(...)
+  + calculerSalaire() : double
+  + afficher() : void
+}
+
+class AgentAdministratif {
+  - primeAdministrative : double
+  - primeResponsabilite : double
+  + AgentAdministratif(...)
+  + calculerSalaire() : double
+  + afficher() : void
+}
+
+class Technicien {
+  - primeTechnique : double
+  - primeRisque : double
+  + Technicien(...)
+  + calculerSalaire() : double
+  + afficher() : void
+}
+
+class Universite {
+  - nom : string
+  - employes : vector<Employe*>
+  + ajouterEmploye(e : Employe*) : void
+  + afficherTous() : void
+  + calculerMasseSalariale() : double
+}
+
+Employe <|-- Enseignant
+Employe <|-- AgentAdministratif
+Employe <|-- Technicien
+Universite "1" o-- "0..*" Employe : emploie
+
+@enduml
